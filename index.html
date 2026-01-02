@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MovieWeb | Stream like Netflix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">MovieWeb</div>
+    <nav class="nav-tabs" aria-label="Primary">
+      <button class="tab-button is-active" data-target="home" aria-selected="true">Home</button>
+      <button class="tab-button" data-target="library">Library</button>
+      <button class="tab-button" data-target="admin">Admin</button>
+    </nav>
+    <div class="user-pill">
+      <span class="dot"></span>
+      <span>Admin</span>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="tab-panel is-active" aria-label="Home">
+      <div class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Premium streaming</p>
+          <h1>Stream movies in a Netflix-style experience.</h1>
+          <p class="lede">Curate your catalogue, share embeddable players, and manage everything from the built-in admin panel.</p>
+          <div class="actions">
+            <button class="primary">Watch now</button>
+            <button class="ghost" data-target="library">Browse library</button>
+          </div>
+        </div>
+        <div class="hero-card" aria-hidden="true">
+          <div class="hero-card__thumb">
+            <img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=1200&q=80" alt="Featured thriller" loading="lazy">
+            <span class="badge">Featured</span>
+          </div>
+          <div class="hero-card__body">
+            <h3>Nightfall Protocol</h3>
+            <p>Encrypted agents go rogue when a mission unravels at midnight.</p>
+            <div class="meta">
+              <span>2024</span>
+              <span>Action</span>
+              <span>PG-13</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="home-rows" class="content-rows" aria-live="polite"></div>
+    </section>
+
+    <section id="library" class="tab-panel" aria-label="Library">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Library</p>
+          <h2>Browse the catalogue</h2>
+        </div>
+        <div class="filters">
+          <label>
+            Category
+            <select id="category-filter"></select>
+          </label>
+          <label>
+            Sort by
+            <select id="sort-filter">
+              <option value="title">Title (A-Z)</option>
+              <option value="year">Year</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div id="library-grid" class="grid"></div>
+    </section>
+
+    <section id="admin" class="tab-panel" aria-label="Admin">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Admin panel</p>
+          <h2>Publish new movies</h2>
+          <p class="lede">Add new titles with a poster, description, and embedded player URL.</p>
+        </div>
+      </div>
+      <form id="movie-form" class="admin-form">
+        <div class="form-grid">
+          <label>Title
+            <input name="title" type="text" placeholder="Nightfall Protocol" required />
+          </label>
+          <label>Category
+            <input name="category" type="text" placeholder="Action" required />
+          </label>
+          <label>Year
+            <input name="year" type="number" min="1900" max="2099" value="2024" required />
+          </label>
+          <label>Rating
+            <input name="rating" type="text" placeholder="PG-13" />
+          </label>
+          <label>Poster URL
+            <input name="poster" type="url" placeholder="https://..." required />
+          </label>
+          <label>Embed URL
+            <input name="embed" type="url" placeholder="https://youtube.com/embed/..." required />
+          </label>
+        </div>
+        <label>Description
+          <textarea name="description" rows="3" placeholder="Short synopsis" required></textarea>
+        </label>
+        <div class="form-actions">
+          <button class="primary" type="submit">Publish</button>
+          <p class="form-hint">Movies are stored locally for demo purposes. Add your own embeds from your provider of choice.</p>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <div id="player-modal" class="modal" role="dialog" aria-modal="true" aria-label="Movie player" hidden>
+    <div class="modal__backdrop" data-close="modal"></div>
+    <div class="modal__content" role="document">
+      <button class="close" data-close="modal" aria-label="Close player">×</button>
+      <div class="modal__body">
+        <iframe id="player-frame" src="" allow="autoplay; encrypted-media" allowfullscreen title="Movie player"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
